@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20191104110720_InitalCreate.cs" />
+    <Compile Remove="Migrations\20191104113002_InitalCreate.cs" />
+    <Compile Remove="Migrations\20191104113109_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191104113723_InitialCreate.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.2.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Zoo.Core\Zoo.Core.csproj" />
+  </ItemGroup>
+
+</Project>
