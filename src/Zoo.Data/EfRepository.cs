@@ -18,22 +18,22 @@ namespace Zoo.Data
             _context = context;
         }
 
-        public TEntity GetById(object id)
+        public virtual TEntity GetById(object id)
         {
             return Entities.Find(id);
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public virtual IEnumerable<TEntity> GetAll()
         {
             return Entities.ToList();
         }
 
-        public IQueryable<TEntity> Table
+        public virtual IQueryable<TEntity> Table
         {
             get { return Entities; }
         }
 
-        public void Insert(TEntity entity)
+        public virtual void Insert(TEntity entity)
         {
             if (entity == null)
                 throw new ArgumentNullException(nameof(entity));
@@ -43,7 +43,7 @@ namespace Zoo.Data
             _context.SaveChanges();
         }
 
-        public void Insert(IEnumerable<TEntity> entities)
+        public virtual void Insert(IEnumerable<TEntity> entities)
         {
             if (entities == null)
                 throw new ArgumentNullException(nameof(entities));
@@ -53,7 +53,7 @@ namespace Zoo.Data
             _context.SaveChanges();
         }
 
-        public void Update(TEntity entity)
+        public virtual void Update(TEntity entity)
         {
             if (entity == null)
                 throw new ArgumentNullException(nameof(entity));
@@ -63,7 +63,7 @@ namespace Zoo.Data
             _context.SaveChanges();
         }
 
-        public void Update(IEnumerable<TEntity> entities)
+        public virtual void Update(IEnumerable<TEntity> entities)
         {
             if (entities == null)
                 throw new ArgumentNullException(nameof(entities));
@@ -73,7 +73,7 @@ namespace Zoo.Data
             _context.SaveChanges();
         }
 
-        public void Delete(TEntity entity)
+        public virtual void Delete(TEntity entity)
         {
             if (entity == null)
                 throw new ArgumentNullException(nameof(entity));
@@ -83,7 +83,7 @@ namespace Zoo.Data
             _context.SaveChanges();
         }
 
-        public void Delete(IEnumerable<TEntity> entities)
+        public virtual void Delete(IEnumerable<TEntity> entities)
         {
             if (entities == null)
                 throw new ArgumentNullException(nameof(entities));

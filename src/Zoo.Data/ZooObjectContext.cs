@@ -8,11 +8,9 @@ namespace Zoo.Data
 {
     public class ZooObjectContext : DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public ZooObjectContext(DbContextOptions<ZooObjectContext> options) 
+            : base(options)
         {
-            optionsBuilder.UseSqlServer(@"Server=(local)\hiberus;Database=ZooDB;Trusted_Connection=True;");
-
-            base.OnConfiguring(optionsBuilder);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
