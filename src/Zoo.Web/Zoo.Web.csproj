@@ -25,6 +25,7 @@
     <Folder Include="Areas\admin\Data\" />
     <Folder Include="Areas\admin\Views\Shared\Components\" />
     <Folder Include="Filters\" />
+    <Folder Include="Binders\" />
   </ItemGroup>
 
 </Project>

@@ -1,76 +1,89 @@
-﻿    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1>Employees</h1>
-                    </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Habitats</li>
-                        </ol>
-                    </div>
+﻿@model IEnumerable<Zoo.Core.Domain.Habitat>
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Habitats</h1>
                 </div>
-            </div><!-- /.container-fluid -->
-        </section>
-        <!-- Main content -->
-        <section class="content">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                            <table id="example1" class="table table-bordered table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Id</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Date of Birth</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                @for (var i = 1; i <= 100; i++)
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Habitats</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <a asp-area="admin" asp-action="Create" asp-controller="Habitats" class="btn btn-primary">
+                            Add new <i class="fas fa-plus-circle"></i>
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var habitat in Model)
                                 {
                                     <tr>
-                                        <td>@i</td>
-                                        <td>First Name @i</td>
-                                        <td>Last Name @i</td>
-                                        <td>@DateTime.Now.ToShortDateString()</td>
+                                        <td>@habitat.Id</td>
+                                        <td>@habitat.Name</td>
+                                        <td>@habitat.Description</td>
+                                        <td>
+                                            <a asp-area="admin" asp-action="Edit" asp-controller="Habitats" asp-route-id="@habitat.Id" class="btn btn-sm btn-primary">
+                                                Edit <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a asp-area="admin" asp-action="Delete" asp-controller="Habitats" asp-route-id="@habitat.Id" class="btn btn-sm btn-danger">
+                                                Delete <i class="fas fa-remove-format"></i>
+                                            </a>
+                                        </td>
                                     </tr>
                                 }
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>Id</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Date of Birth</th>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                        <!-- /.card-body -->
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Action</th>
+                                </tr>
+                            </tfoot>
+                        </table>
                     </div>
-                    <!-- /.card -->
+                    <!-- /.card-body -->
                 </div>
-                <!-- /.col -->
+                <!-- /.card -->
             </div>
-            <!-- /.row -->
-        </section>
-        <!-- /.content -->
-    </div>
-    <!-- /.content-wrapper -->
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
 
-    @section Scripts {
-        <!-- DataTables -->
-        <script src="~/admin/plugins/datatables/jquery.dataTables.js"></script>
-        <script src="~/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+@section Scripts {
+    <!-- DataTables -->
+    <script src="~/admin/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="~/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 
-        <!-- page script -->
-        <script>
+    <!-- page script -->
+    <script>
         $(function () {
             $('#example1').DataTable({
                 "paging": true,
@@ -81,5 +94,5 @@
                 "autoWidth": true
             });
         });
-        </script>
-    }
+    </script>
+}

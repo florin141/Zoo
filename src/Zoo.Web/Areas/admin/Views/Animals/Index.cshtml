@@ -1,4 +1,6 @@
-﻿<div class="content-wrapper">
+﻿@model IEnumerable<Zoo.Core.Domain.Animal>
+
+<div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
@@ -20,34 +22,48 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <!-- /.card-header -->
+                    <div class="card-header">
+                        <a asp-area="admin" asp-action="Create" asp-controller="Animals" class="btn btn-primary">
+                            Add new <i class="fas fa-plus-circle"></i>
+                        </a>
+                    </div>
                     <div class="card-body">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Date of Birth</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Habitat</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @for (var i = 1; i <= 100; i++)
+                                @foreach (var animal in Model)
                                 {
                                     <tr>
-                                        <td>@i</td>
-                                        <td>First Name @i</td>
-                                        <td>Last Name @i</td>
-                                        <td>@DateTime.Now.ToShortDateString()</td>
+                                        <td>@animal.Id</td>
+                                        <td>@animal.Name</td>
+                                        <td>@animal.Description</td>
+                                        <td>@animal.HabitatId</td>
+                                        <td>
+                                            <a asp-area="admin" asp-action="Edit" asp-controller="Animals" asp-route-id="@animal.Id" class="btn btn-sm btn-primary">
+                                                Edit <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a asp-area="admin" asp-action="Delete" asp-controller="Animals" asp-route-id="@animal.Id" class="btn btn-sm btn-danger">
+                                                Delete <i class="fas fa-remove-format"></i>
+                                            </a>
+                                        </td>
                                     </tr>
                                 }
                             </tbody>
                             <tfoot>
                                 <tr>
                                     <th>Id</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Date of Birth</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Habitat</th>
+                                    <th>Action</th>
                                 </tr>
                             </tfoot>
                         </table>

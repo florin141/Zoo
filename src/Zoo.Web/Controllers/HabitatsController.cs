@@ -34,7 +34,7 @@ namespace Zoo.Web.Controllers
         {
             var animals = _animalService.GetAnimalsByHabitatId(id);
 
-            return View(animals);
+            return Json(animals);
         }
     }
 }

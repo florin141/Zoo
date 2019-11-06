@@ -51,7 +51,9 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="p-5">
-                            <h2 class="display-4">@habitat.Name</h2>
+                            <a class="nav-link" asp-area="" asp-controller="Habitats" asp-action="Animals" asp-route-id="@habitat.Id">
+                                <h2 class="display-4">@habitat.Name</h2>
+                            </a>
                             <p>@habitat.Description</p>
                         </div>
                     </div>

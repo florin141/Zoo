@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Zoo.Core.Domain;
 using Zoo.Services.Employees;
 using Zoo.Services.Habitats;
 using Zoo.Web.Areas.admin.Models;
+using Zoo.Web.Extensions;
 
 namespace Zoo.Web.Areas.admin.Controllers
 {
@@ -23,6 +26,47 @@ namespace Zoo.Web.Areas.admin.Controllers
             var emp = _employeeService.GetEmployees();
 
             return View(emp);
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(EmployeeDto model)
+        {
+            var employee = new Employee
+            {
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                BirthDate = DateTime.Now,
+                Picture = model.Picture.ToBase64String()
+            };
+
+            _employeeService.InsertEmployee(employee);
+
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Delete(int id)
+        {
+            var employee = _employeeService.GetEmployeeById(id);
+
+            if (employee == null)
+            {
+                return NotFound();
+            }
+
+            return View(employee);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Employee employee)
+        {
+            _employeeService.DeleteEmployee(employee);
+
+            return RedirectToAction("Index");
         }
     }
 }
