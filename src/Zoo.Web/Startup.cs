@@ -7,9 +7,17 @@ using IdentityModel;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.IdentityModel.Tokens;
+using Zoo.Core.Data;
+using Zoo.Core.Domain;
+using Zoo.Data;
+using Zoo.Services.Animals;
+using Zoo.Services.Employees;
+using Zoo.Services.Habitats;
 
 namespace Zoo.Web
 {
@@ -28,6 +36,21 @@ namespace Zoo.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.AddTransient<DbContext, ZooObjectContext>();
+
+            services.AddDbContext<ZooObjectContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.TryAddScoped(typeof(IRepository<>), typeof(EfRepository<>));
+
+            services.TryAddScoped(typeof(IRepository<Habitat>), typeof(HabitatRepository));
+
+            services.AddScoped<IEmployeeService, EmployeeService>();
+
+            services.AddScoped<IHabitatService, HabitatService>();
+
+            services.AddScoped<IAnimalService, AnimalService>();
 
             services.AddAuthentication(options =>
                 {
@@ -91,6 +114,11 @@ namespace Zoo.Web
 
             app.UseMvc(routes =>
             {
+                routes.MapRoute(
+                    name: "areas",
+                    template: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}"
+                );
+
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
