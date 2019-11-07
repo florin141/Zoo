@@ -1,5 +1,3 @@
-using System;
-
 namespace Zoo.Web.Models
 {
     public class ErrorViewModel

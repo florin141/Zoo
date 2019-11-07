@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Zoo.Core.Domain;
 using Zoo.Services.Employees;
-using Zoo.Services.Habitats;
 using Zoo.Web.Areas.admin.Models;
 using Zoo.Web.Extensions;
 
