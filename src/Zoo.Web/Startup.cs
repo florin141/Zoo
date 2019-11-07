@@ -37,12 +37,21 @@ namespace Zoo.Web
         {
             services.AddMvc();
 
-            services.AddTransient<DbContext, ZooObjectContext>();
+            services.AddScoped<DbContext, ZooObjectContext>();
 
             services.AddDbContext<ZooObjectContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                {
+                    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), sqlServerOptionsAction:
+                        sqlOptions =>
+                        {
+                            sqlOptions.EnableRetryOnFailure(
+                                maxRetryCount: 10,
+                                maxRetryDelay: TimeSpan.FromSeconds(30),
+                                errorNumbersToAdd: null);
+                        });
+                });
 
-            services.TryAddScoped(typeof(IRepository<>), typeof(EfRepository<>));
+            services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
 
             services.TryAddScoped(typeof(IRepository<Habitat>), typeof(HabitatRepository));
 
