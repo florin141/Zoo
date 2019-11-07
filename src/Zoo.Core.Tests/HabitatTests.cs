@@ -16,6 +16,7 @@ namespace Zoo.Core.Tests
                 Id = 1,
                 Name = "African savanna",
                 Description = "Habitat description",
+                Picture = "/9j/4Q",
                 Animals = new List<Animal>
                 {
                     new Animal(),
@@ -26,6 +27,7 @@ namespace Zoo.Core.Tests
             Assert.NotNull(habitat);
             Assert.Equal("African savanna", habitat.Name);
             Assert.Equal("Habitat description", habitat.Description);
+            Assert.Equal("/9j/4Q", habitat.Picture);
 
             Assert.NotNull(habitat.Animals);
             Assert.Equal(2, habitat.Animals.Count);
