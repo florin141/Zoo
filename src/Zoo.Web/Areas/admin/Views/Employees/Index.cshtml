@@ -28,34 +28,34 @@
                         </a>
                     </div>
                     <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped">
+                        <table id="employees" class="table table-bordered table-striped">
                             <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Date of Birth</th>
-                                <th>Action</th>
-                            </tr>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Date of Birth</th>
+                                    <th>Action</th>
+                                </tr>
                             </thead>
                             <tbody>
-                            @foreach (var emp in Model)
-                            {
-                                <tr>
-                                    <td>@emp.Id</td>
-                                    <td>@emp.FirstName</td>
-                                    <td>@emp.LastName</td>
-                                    <td>@emp.BirthDate</td>
-                                    <td>
-                                        <a asp-area="admin" asp-action="Edit" asp-controller="Employees" asp-route-id="@emp.Id" class="btn btn-sm btn-primary">
-                                            Edit <i class="fas fa-edit"></i>
-                                        </a>
-                                        <a asp-area="admin" asp-action="Delete" asp-controller="Employees" asp-route-id="@emp.Id" class="btn btn-sm btn-danger">
-                                            Delete <i class="fas fa-remove-format"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            }
+                                @foreach (var emp in Model)
+                                {
+                                    <tr id="tr@(emp.Id)">
+                                        <td>@emp.Id</td>
+                                        <td>@emp.FirstName</td>
+                                        <td>@emp.LastName</td>
+                                        <td>@emp.BirthDate.ToShortDateString()</td>
+                                        <td>
+                                            <a asp-area="admin" asp-action="Edit" asp-controller="Employees" asp-route-id="@emp.Id" class="btn btn-sm btn-primary">
+                                                Modify <i class="fas fa-edit"></i>
+                                            </a>
+                                            <button type="button" class="delete btn btn-sm btn-danger" id="@emp.Id">
+                                                Delete <i class="fas fa-remove-format"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                }
                             </tbody>
                             <tfoot>
                                 <tr>
@@ -81,13 +81,24 @@
 <!-- /.content-wrapper -->
 
 @section Scripts {
+<environment names="Development">
     <!-- DataTables -->
     <script src="~/admin/plugins/datatables/jquery.dataTables.js"></script>
     <script src="~/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+    <!-- sweetalert2 -->
+    <script src="~/vendor/sweetalert2/dist/sweetalert2.all.js"></script>
+</environment>
+    <environment names="Staging,Production">
+        <!-- DataTables -->
+        <script src="~/admin/plugins/datatables/jquery.dataTables.js"></script>
+        <script src="~/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+        <!-- sweetalert2 -->
+        <script src="~/vendor/sweetalert2/dist/sweetalert2.all.min.js"></script>
+    </environment>
 
     <!-- page script -->
     <script>
-        $(function () {
+        $(document).ready(function () {
             $('#example1').DataTable({
                 "paging": true,
                 "lengthChange": false,
@@ -95,6 +106,34 @@
                 "ordering": true,
                 "info": true,
                 "autoWidth": true
+            });
+
+            $('button.delete').click(function () {
+                var id = $(this).attr("id");
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            type: "POST",
+                            url: '@Url.Action("Delete", "Employees")',
+                            data: { id: id },
+                            success: function () {
+                                $(`#tr${id}`).remove();
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success');
+                            }
+                        });
+                    }
+                });
             });
         });
     </script>

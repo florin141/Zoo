@@ -22,5 +22,6 @@
     <Folder Include="Areas\admin\Views\Shared\Components\" />
     <Folder Include="Filters\" />
     <Folder Include="Binders\" />
+    <Folder Include="Views\Notification\" />
   </ItemGroup>
 </Project>

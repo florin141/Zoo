@@ -25,8 +25,7 @@
                 <div class="col-md-12">
                     <!-- Horizontal Form -->
                     <div class="card card-info">
-                        <!-- form start -->
-                        <form enctype="multipart/form-data" class="form-horizontal" asp-controller="Employees" asp-action="Create">
+                        <form enctype="multipart/form-data" class="form-horizontal" asp-controller="Employees" asp-action="Edit">
                             <div class="card-body">
                                 <div class="form-group row">
                                     <label asp-for="FirstName" class="col-sm-2 col-form-label">First Name</label>
@@ -51,20 +50,18 @@
                                     <label asp-for="Picture" class="col-sm-2 col-form-label"></label>
                                     <div class="col-sm-10">
                                         <div class="custom-file">
-                                            <input asp-for="Picture" class="form-control custom-file-input"/>
+                                            <input asp-for="Picture" class="form-control custom-file-input" />
                                             <label class="custom-file-label">Choose file</label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Create</button>
+                                <button type="submit" class="btn btn-primary">Modify</button>
                                 <a asp-area="admin" asp-action="Index" asp-controller="Employees" class="btn btn-danger">
                                     Cancel
                                 </a>
                             </div>
-
                         </form>
                     </div>
                     <!-- /.card -->
@@ -78,7 +75,6 @@
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-
 
 @section Scripts {
     <script src="~/admin/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
