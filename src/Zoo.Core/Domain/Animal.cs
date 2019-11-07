@@ -1,7 +1,7 @@
 ﻿namespace Zoo.Core.Domain
 {
     /// <summary>
-    /// Animal
+    /// Animal entity
     /// </summary>
     public class Animal : BaseEntity
     {
