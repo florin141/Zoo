@@ -1,21 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-
     <IsPackable>false</IsPackable>
+    <ProjectGuid>{8C98D6A4-460A-4F0A-A528-11B64BF1F941}</ProjectGuid>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
     <PackageReference Include="xunit" Version="2.4.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Zoo.Core\Zoo.Core.csproj" />
     <ProjectReference Include="..\Zoo.Data\Zoo.Data.csproj" />
     <ProjectReference Include="..\Zoo.Services\Zoo.Services.csproj" />
   </ItemGroup>
-
 </Project>

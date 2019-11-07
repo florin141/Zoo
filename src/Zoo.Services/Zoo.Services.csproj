@@ -1,12 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <ProjectGuid>{412A8590-CECE-4638-83D1-43A5B4C67B6C}</ProjectGuid>
   </PropertyGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Zoo.Core\Zoo.Core.csproj" />
     <ProjectReference Include="..\Zoo.Data\Zoo.Data.csproj" />
   </ItemGroup>
-
 </Project>
