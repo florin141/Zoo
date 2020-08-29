@@ -1,0 +1,85 @@
+﻿@model HabitatDto
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Habitats</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Habitats</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- Horizontal Form -->
+                    <div class="card card-info">
+                        <!-- form start -->
+                        <form enctype="multipart/form-data" class="form-horizontal" asp-controller="Habitats" asp-action="Create">
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <label asp-for="Name" class="col-sm-2 col-form-label">Habitat Name</label>
+                                    <div class="col-sm-10">
+                                        <input asp-for="Name" class="form-control" id="habitatName" placeholder="Habitat Name">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="Description" class="col-sm-2 col-form-label">Description</label>
+                                    <div class="col-sm-10">
+                                        <textarea asp-for="Description" rows="10" class="form-control" id="description" placeholder="Description"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label asp-for="Picture" class="col-sm-2 col-form-label"></label>
+                                    <div class="col-sm-10">
+                                        <div class="custom-file">
+                                            <input asp-for="Picture" class="form-control custom-file-input"/>
+                                            <label class="custom-file-label">Choose file</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Create</button>
+                                <a asp-area="admin" asp-action="Index" asp-controller="Habitats" class="btn btn-danger">
+                                    Cancel
+                                </a>
+                            </div>
+
+                        </form>
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!--/.col (left) -->
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+
+@section Scripts {
+    <script src="~/admin/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            bsCustomFileInput.init();
+        });
+    </script>
+}

@@ -48,7 +48,7 @@
                                         <td>@emp.BirthDate.ToShortDateString()</td>
                                         <td>
                                             <a asp-area="admin" asp-action="Edit" asp-controller="Employees" asp-route-id="@emp.Id" class="btn btn-sm btn-primary">
-                                                Modify <i class="fas fa-edit"></i>
+                                                Edit <i class="fas fa-edit"></i>
                                             </a>
                                             <button type="button" class="delete btn btn-sm btn-danger" id="@emp.Id">
                                                 Delete <i class="fas fa-remove-format"></i>
@@ -81,13 +81,13 @@
 <!-- /.content-wrapper -->
 
 @section Scripts {
-<environment names="Development">
-    <!-- DataTables -->
-    <script src="~/admin/plugins/datatables/jquery.dataTables.js"></script>
-    <script src="~/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
-    <!-- sweetalert2 -->
-    <script src="~/vendor/sweetalert2/dist/sweetalert2.all.js"></script>
-</environment>
+    <environment names="Development">
+        <!-- DataTables -->
+        <script src="~/admin/plugins/datatables/jquery.dataTables.js"></script>
+        <script src="~/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+        <!-- sweetalert2 -->
+        <script src="~/vendor/sweetalert2/dist/sweetalert2.all.js"></script>
+    </environment>
     <environment names="Staging,Production">
         <!-- DataTables -->
         <script src="~/admin/plugins/datatables/jquery.dataTables.js"></script>

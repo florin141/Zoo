@@ -58,14 +58,14 @@ namespace Zoo.Services.Habitats
         {
             if (habitat == null) throw new ArgumentNullException(nameof(habitat));
 
-            _habitatRepository.Update(habitat);
+            _habitatRepository.Delete(habitat);
         }
 
         public void DeleteHabitats(IEnumerable<Habitat> habitats)
         {
             if (habitats == null) throw new ArgumentNullException(nameof(habitats));
 
-            _habitatRepository.Update(habitats);
+            _habitatRepository.Delete(habitats);
         }
     }
 }

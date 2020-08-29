@@ -14,7 +14,7 @@ namespace Zoo.Services.Employees
             _employeeRepository = employeeRepository;
         }
 
-        public virtual void DeleteEmployee(Employee employee)
+        public void DeleteEmployee(Employee employee)
         {
             if (employee == null) throw new ArgumentNullException(nameof(employee));
 
@@ -25,7 +25,7 @@ namespace Zoo.Services.Employees
         {
             if (employees == null) throw new ArgumentNullException(nameof(employees));
 
-            _employeeRepository.Update(employees);
+            _employeeRepository.Delete(employees);
         }
 
         public Employee GetEmployeeById(int id)

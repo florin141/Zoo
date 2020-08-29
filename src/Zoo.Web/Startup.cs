@@ -50,8 +50,6 @@ namespace Zoo.Web
 
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
 
-            services.TryAddScoped(typeof(IRepository<Habitat>), typeof(HabitatRepository));
-
             services.AddScoped<IEmployeeService, EmployeeService>();
 
             services.AddScoped<IHabitatService, HabitatService>();
